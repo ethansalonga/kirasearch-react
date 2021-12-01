@@ -1,13 +1,394 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap");
+
+* {
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+a {
+  text-decoration: none;
+  position: relative;
+}
+
+li {
+  list-style-type: none;
+}
+
+.link__hover-effect:after {
+  content: "";
+  position: absolute;
+  height: 3px;
+  width: 0;
+  bottom: -3px;
+  right: 0;
+  transition: all 400ms ease;
+}
+
+.link__hover-effect--black:after {
+  background-color: #242424;
+}
+
+.link__hover-effect--white:after {
+  background-color: #fff;
+}
+
+.link__hover-effect:hover:after {
+  width: 100%;
+  left: 0;
+}
+
+.red {
+  color: #b23423;
+}
+
+/*
+
+NAVBAR
+
+*/
+
+nav {
+  background-color: #fff;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+  padding: 12px 50px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.logo {
+  height: auto;
+  width: 150px;
+  filter: invert(0);
+}
+
+.nav__link--list {
+  display: flex;
+}
+
+.nav__link {
+  padding-left: 48px;
+}
+
+.nav__link--anchor {
+  color: #242424;
+}
+
+.nav__link--anchor-primary {
+  background-color: #2a464d;
+  padding: 12px 32px;
+  border-radius: 50px;
+  color: #fff;
+  transition: all 400ms ease;
+}
+
+.nav__link--anchor-primary:hover {
+  background-color: #568c9b;
+}
+
+/*
+
+LANDING
+
+*/
+
+#landing {
+  background-color: #242424;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100vh - 114px);
+  justify-content: space-between;
+}
+
+.header__title {
+  font-size: 48px;
+  text-align: center;
+  max-width: 800px;
+  margin-top: 48px;
+  animation: fade-up 1500ms 600ms backwards;
+  color: #fff;
+}
+
+.header__subtitle {
+  font-size: 32px;
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: 40px;
+  color: #b27b23;
+  animation: fade-up 1500ms 1200ms backwards;
+}
+
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#landing__form {
+  width: 100%;
+}
+
+.input__wrapper {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  margin-top: 48px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.landing__input {
+  background-color: #242424;
+  border-radius: 20px;
+  border: 1px solid #b27b23;
+  color: #b27b23;
+  display: inline-block;
+  height: 70px;
+  line-height: 40px;
+  outline: none;
+  padding: 0 15px;
+  width: 100%;
+  font-size: 24px;
+  padding-left: 24px;
+  transition: all 300ms ease;
+  animation: fade-in 1200ms 2000ms backwards;
+}
+
+.landing__input:focus,
+.landing__input:hover {
+  border-color: #da972b;
+}
+
+.landing__input::placeholder {
+  color: #b27b23;
+}
+
+.btn__search {
+  border: 1px solid #b23423;
+  background-color: #b23423;
+  box-shadow: 2px 2px 4px rgba(204, 93, 93, 0.2);
+  cursor: pointer;
+  width: 200px;
+  margin-left: 24px;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 40px;
+  transition: all 300ms ease;
+  animation: fade-in 1200ms 2000ms backwards;
+}
+
+.btn__search:hover {
+  background-color: #da402c;
+  border-color: #da402c;
+}
+
+.landing__img {
+  display: flex;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/*
+
+SEARCH
+
+*/
+
+.nav__wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 380px;
+  position: relative;
+}
+
+nav {
+  z-index: 10;
+  background-color: transparent;
+}
+
+.search__logo {
+  filter: invert(1);
+}
+
+.nav__link--anchor-search {
+  color: #fff;
+}
+
+.search__header {
+  letter-spacing: 2px;
+  MARGIN-TOP: 24px;
+  text-align: center;
+  font-size: 40px;
+  z-index: 10;
+  color: #fff;
+}
+
+.input__wrapper--search {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  align-self: center;
+  margin-top: 48px;
+  z-index: 10;
+}
+
+.search__input {
+  color: rgba(0, 0, 0, 0.87);
+  width: 100%;
+  height: 60px;
+  font-size: 20px;
+  padding-left: 20px;
+  border: 1px solid #242424;
+  border-radius: 50px;
+}
+
+.search__input:focus {
+  outline: none;
+}
+
+.btn__input {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 10000;
+  padding: 0 20px 0 0;
+  color: #242424;
+  font-size: 32px;
+  transition: color 300ms ease;
+  border: none;
+  background-color: transparent;
+}
+
+.btn__input:hover {
+  color: #444444;
+}
+
+.overlay {
+  background-image: url("./assets/shinigami.jpg");
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100%;
+  min-width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.overlay:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(36, 36, 36, 0.83);
+  pointer-events: none;
+}
+
+/*
+
+SEARCH RESULTS
+
+*/
+
+.search__row {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.results__heading--wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.search__results--header {
+  font-size: 32px;
+}
+
+.anime__card--wrapper {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.anime__card {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  color: #242424;
+  font-size: 14px;
+  transition: all 300ms ease;
+}
+
+.anime__card:hover {
+  transform: scale(1.08);
+}
+
+.anime__img {
+  max-height: 320px;
+  max-width: 220px;
+}
+
+.anime__title {
+  font-weight: 700;
+  font-size: 18px;
+  padding: 4px 0;
+}
+
+.anime__episodes {
+  color: #6e6e6e;
+}
+
+.sort__wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.sort__title {
+  padding-right: 24px;
+}
+
+#filter {
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #dcdfe6;
+  color: #606266;
+  height: 40px;
+  outline: none;
+  padding: 0 16px;
+  width: 120px;
 }
