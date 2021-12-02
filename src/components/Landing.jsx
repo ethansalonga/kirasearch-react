@@ -6,29 +6,29 @@ const Landing = () => {
   return (
     <section id="landing">
       <header>
-        <h1 class="header__title">
+        <h1 className="header__title">
           The human who searches by using this platform shall{" "}
-          <span class="red">Find.</span>
+          <span className="red">Find.</span>
         </h1>
-        <h2 class="header__subtitle">
-          Find your next anime with <span class="red">KiraSearch</span>
+        <h2 className="header__subtitle">
+          Find your next anime with <span className="red">KiraSearch</span>
         </h2>
       </header>
 
-      <form id="landing__form" onsubmit="">
-        <div class="input__wrapper">
+      <form id="landing__form">
+        <div className="input__wrapper">
           <input
             type="text"
             placeholder="Search by Title"
-            class="landing__input"
+            className="landing__input"
           />
-          <button class="btn__search" type="submit">
+          <button className="btn__search" type="submit">
             <FontAwesomeIcon icon="search" />
           </button>
         </div>
       </form>
 
-      <figure class="landing__img">
+      <figure className="landing__img">
         <img src={LandingImg} alt="" />
       </figure>
     </section>
