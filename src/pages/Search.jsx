@@ -1,24 +1,41 @@
-import React from "react";
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import AnimeCard from "../components/AnimeCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Logo from "../assets/logo.png";
-import AnimeCard from "../components/AnimeCard";
 
 const Search = (props) => {
-  const [topAnime, setTopAnime] = useState([]);
+  const query = localStorage.getItem("query");
 
-  const getTopAnime = async () => {
-    const temp = await fetch(
-      `https://api.jikan.moe/v3/top/anime/1/bypopularity`
-    ).then((res) => res.json());
-
-    setTopAnime(temp.top.slice(0, 9));
+  const renderAnime = () => {
+    if (query) {
+      props.fetchAnime(query);
+      localStorage.clear();
+    }
   };
 
-  useEffect(() => {
-    getTopAnime();
-  }, []);
+  renderAnime();
+
+  const contactAlert = () => {
+    alert("Haven't implemented this yet!");
+  }
+
+  const SortAnime = (sort) => {
+    if (sort === "POPULARITY") {
+      props.setAnimeList(
+        props.animeList.slice().sort((a, b) => b.members - a.members)
+      );
+    }
+    if (sort === "SCORE") {
+      props.setAnimeList(
+        props.animeList.slice().sort((a, b) => b.score - a.score)
+      );
+    }
+    if (sort === "TITLE") {
+      props.setAnimeList(
+        props.animeList.slice().sort((a, b) => a.title.localeCompare(b.title))
+      );
+    }
+  };
 
   return (
     <>
@@ -48,7 +65,7 @@ const Search = (props) => {
               <li className="nav__link">
                 <Link
                   to="/search"
-                  className="nav__link--anchor-search nav__link--anchor-primary"
+                  className="nav__link--anchor-search nav__link--anchor-primary" onClick={contactAlert}
                 >
                   Contact
                 </Link>
@@ -78,7 +95,7 @@ const Search = (props) => {
         <aside>
           <nav className="sidebar__nav">
             <h3 className="sidebar__title">Most Popular Anime</h3>
-            {topAnime.map((anime) => (
+            {props.topAnime.map((anime) => (
               <Link to="/" className="sidebar__link" key={anime.mal_id}>
                 {anime.title}
               </Link>
@@ -92,10 +109,17 @@ const Search = (props) => {
               <h2 className="search__results--header">Search results:</h2>
               <div className="sort__wrapper">
                 <h3 className="sort__title">Sort by</h3>
-                <select id="filter">
-                  <option value="DEFAULT">Default</option>
+                <select
+                  id="filter"
+                  defaultValue="DEFAULT"
+                  onChange={(e) => SortAnime(e.target.value)}
+                >
+                  <option value="DEFAULT" disabled>
+                    Sort
+                  </option>
+                  <option value="POPULARITY">Popularity</option>
                   <option value="SCORE">Score</option>
-                  <option value="MEMBERS">Members</option>
+                  <option value="TITLE">Title</option>
                 </select>
               </div>
             </div>

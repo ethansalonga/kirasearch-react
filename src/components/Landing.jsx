@@ -2,7 +2,18 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LandingImg from "../assets/landing.png";
 
-const Landing = () => {
+const Landing = (props) => {
+
+  const landingSearch = (e) => {
+    e.preventDefault();
+
+    window.location.href = `${window.location.origin}/search`;
+  };
+
+  const onSearchChange = () => {
+    localStorage.setItem("query", document.querySelector(".landing__input").value)
+  }
+
   return (
     <section id="landing">
       <header>
@@ -15,12 +26,14 @@ const Landing = () => {
         </h2>
       </header>
 
-      <form id="landing__form">
+      <form id="landing__form" onSubmit={landingSearch}>
         <div className="input__wrapper">
           <input
-            type="text"
+            type="search"
             placeholder="Search by Title"
             className="landing__input"
+            value={props.search}
+            onChange={onSearchChange}
           />
           <button className="btn__search" type="submit">
             <FontAwesomeIcon icon="search" />
