@@ -501,8 +501,8 @@ ANIME INFO
 }
 
 .anime__info--img {
-  min-width: 280px;
-  width: 100%;
+  min-width: 320px;
+  width: 80%;
 }
 
 .anime__info--main {
@@ -549,5 +549,10 @@ ANIME INFO
 .anime__info--not-airing {
   color: #23b268;
   font-size: 24px;
+  font-weight: 500;
+}
+
+.anime__info--rank {
+  font-size: 22px;
   font-weight: 500;
 }

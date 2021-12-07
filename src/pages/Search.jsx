@@ -42,7 +42,7 @@ const Search = (props) => {
       <div className="nav__wrapper">
         <nav>
           <div className="navbar">
-            <figure>
+            <figure> 
               <img src={Logo} alt="" className="logo search__logo" />
             </figure>
             <ul className="nav__link--list">
@@ -96,7 +96,7 @@ const Search = (props) => {
           <nav className="sidebar__nav">
             <h3 className="sidebar__title">Most Popular Anime</h3>
             {props.topAnime.map((anime) => (
-              <Link to="/" className="sidebar__link" key={anime.mal_id}>
+              <Link to={`/search/${anime.mal_id}`} className="sidebar__link" key={anime.mal_id} onClick={() => localStorage.setItem("storedAnime", JSON.stringify(anime))}>
                 {anime.title}
               </Link>
             ))}

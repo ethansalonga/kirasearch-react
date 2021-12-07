@@ -29,8 +29,11 @@ const AnimeInfo = () => {
               <h3 className="anime__info--episodes">
                 {anime.type} ({anime.episodes} episodes)
               </h3>
-              <p className="anime__info--para">
+              <div className="anime__info--para">
                 {anime.synopsis}{" "}
+                {anime.rank && (
+                  <p className="anime__info--rank">Rank #{anime.rank}</p>
+                )}
                 <a
                   href={anime.url}
                   target="_blank"
@@ -39,7 +42,7 @@ const AnimeInfo = () => {
                 >
                   [More info]
                 </a>
-              </p>
+              </div>
               <div className="anime__info--mal-data">
                 <p>MyAnimeList score: {anime.score}</p>
                 <p>MyAnimeList members: {anime.members}</p>
