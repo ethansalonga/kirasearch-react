@@ -1,18 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LandingImg from "../assets/landing.png";
 
 const Landing = (props) => {
-
-  const landingSearch = (e) => {
-    e.preventDefault();
-
-    window.location.href = `${window.location.origin}/search`;
-  };
-
-  const onSearchChange = () => {
-    localStorage.setItem("query", document.querySelector(".landing__input").value)
-  }
+  let navigate = useNavigate();
 
   return (
     <section id="landing">
@@ -26,20 +18,21 @@ const Landing = (props) => {
         </h2>
       </header>
 
-      <form id="landing__form" onSubmit={landingSearch}>
+      <div className="landing__form">
         <div className="input__wrapper">
           <input
             type="search"
             placeholder="Search by Title"
             className="landing__input"
             value={props.search}
-            onChange={onSearchChange}
+            onChange={(e) => props.props.setSearch(e.target.value)}
+            onKeyPress={(event) => event.key === "Enter" && navigate("/search")}
           />
-          <button className="btn__search" type="submit">
+          <button className="btn__search" onClick={() => navigate("/search")}>
             <FontAwesomeIcon icon="search" />
           </button>
         </div>
-      </form>
+      </div>
 
       <figure className="landing__img">
         <img src={LandingImg} alt="" />

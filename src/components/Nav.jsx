@@ -2,7 +2,7 @@ import React from "react";
 import Logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 
-const Nav = () => {
+const Nav = (props) => {
   const contactAlert = () => {
     alert("Haven't implemented this yet!");
   }
@@ -31,7 +31,7 @@ const Nav = () => {
               className="
                 nav__link--anchor
                 link__hover-effect link__hover-effect--black
-              "
+              " onClick={() => props.props.setSearch("")}
             >
               Search anime
             </Link>

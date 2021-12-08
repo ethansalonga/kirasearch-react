@@ -5,7 +5,7 @@ import Nav from '../components/Nav'
 const Home = (props) => {;
   return (
     <>
-      <Nav />
+      <Nav props={props} />
       <Landing props={props} />
     </>
   )

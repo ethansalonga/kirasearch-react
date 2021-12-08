@@ -1,9 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Nav from "../components/Nav";
 
 const AnimeInfo = () => {
+  const { id } = useParams();
+  console.log(id);
+
   let retrievedAnime = localStorage.getItem("storedAnime");
   const anime = JSON.parse(retrievedAnime);
 

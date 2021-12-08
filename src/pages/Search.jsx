@@ -1,19 +1,17 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import AnimeCard from "../components/AnimeCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Logo from "../assets/logo.png";
 
 const Search = (props) => {
-  const query = localStorage.getItem("query");
-
   const renderAnime = () => {
-    if (query) {
-      props.fetchAnime(query);
-      localStorage.clear();
-    }
+    props.fetchAnime(props.search)
   };
 
-  renderAnime();
+  useEffect(() => {
+    renderAnime();
+  }, []);
 
   const contactAlert = () => {
     alert("Haven't implemented this yet!");

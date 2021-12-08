@@ -1,14 +1,39 @@
 import "./index.css";
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
 import AnimeInfo from "./pages/AnimeInfo";
+import axios from "axios";
 
 function App() {
+  const [topAnime, setTopAnime] = useState([]);
   const [animeList, setAnimeList] = useState([]);
   const [search, setSearch] = useState("");
-  const [topAnime, setTopAnime] = useState([]);
+
+  const getTopAnime = async () => {
+    const {
+      data: { top },
+    } = await axios.get(`https://api.jikan.moe/v3/top/anime/1/bypopularity`);
+    setTopAnime(top.slice(0, 9));
+  };
+
+  useEffect(() => {
+    getTopAnime();
+  }, []);
+
+  const fetchAnime = async (query) => {
+    if (query === "") {
+      setAnimeList([]);
+    } else {
+      const {
+        data: { results },
+      } = await axios.get(
+        `https://api.jikan.moe/v3/search/anime?q=${query}&order_by=title&sort=asc&limit=12`
+      );
+      setAnimeList(results);
+    }
+  };
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -16,32 +41,8 @@ function App() {
     fetchAnime(search);
   };
 
-  const getTopAnime = async () => {
-    const temp = await fetch(
-      `https://api.jikan.moe/v3/top/anime/1/bypopularity`
-    ).then((res) => res.json());
-
-    setTopAnime(temp.top.slice(0, 9));
-  };
-
-  const fetchAnime = async (query) => {
-    if (query === "") {
-      setAnimeList([]);
-    } else {
-      const temp = await fetch(
-        `https://api.jikan.moe/v3/search/anime?q=${query}&order_by=title&sort=asc&limit=12`
-      ).then((res) => res.json());
-      
-      setAnimeList(temp.results);
-    }
-  };
-
   useEffect(() => {
     fetchAnime("");
-  }, []);
-
-  useEffect(() => {
-    getTopAnime();
   }, []);
 
   return (
