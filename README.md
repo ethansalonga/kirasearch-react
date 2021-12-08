@@ -4,7 +4,7 @@
 <h3 align="center">KiraSearch React App</h3>
 
   <p align="center">
-    KiraSearch is an anime database search linked to the website MyAnimeList through the Jikan API. This passion project served as a way for me to increase my proficiency in JavaScript and React, as well as learning how to work with data through a public API. This project has currently been deployed through Heroku as the functionality is pretty much complete, though small quality of life changes still need to be made at a later date.
+    KiraSearch is an anime database search linked to the website MyAnimeList through the Jikan API. Main functions of app include displaying of individual anime information and dynamic searching by keyword. This passion project served as a way for me to increase my proficiency in JavaScript and React, as well as learning how to work with data through a public API. KiraSearch has currently been deployed through Heroku as the functionality is pretty much complete, though small quality of life changes still need to be made at a later date.
 </div>
 
 ### Built With
