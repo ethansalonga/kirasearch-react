@@ -3,9 +3,6 @@ import Logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 
 const Nav = (props) => {
-  const contactAlert = () => {
-    alert("Haven't implemented this yet!");
-  }
 
   return (
     <nav>
@@ -37,7 +34,7 @@ const Nav = (props) => {
             </Link>
           </li>
           <li className="nav__link">
-            <Link to="" className="nav__link--anchor nav__link--anchor-primary" onClick={contactAlert}>
+            <Link to="/" className="nav__link--anchor nav__link--anchor-primary" onClick={props.props.contactAlert}>
               Contact
             </Link>
           </li>

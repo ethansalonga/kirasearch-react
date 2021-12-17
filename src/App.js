@@ -35,15 +35,17 @@ function App() {
     }
   };
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-
+  const handleSearch = () => {
     fetchAnime(search);
   };
 
   useEffect(() => {
     fetchAnime("");
   }, []);
+
+  const contactAlert = () => {
+    alert("Haven't implemented this yet!");
+  };
 
   return (
     <Router>
@@ -56,8 +58,7 @@ function App() {
                 handleSearch={handleSearch}
                 search={search}
                 setSearch={setSearch}
-                animeList={animeList}
-                fetchAnime={fetchAnime}
+                contactAlert={contactAlert}
               />
             }
           />
@@ -73,12 +74,13 @@ function App() {
                 fetchAnime={fetchAnime}
                 topAnime={topAnime}
                 setTopAnime={setTopAnime}
+                contactAlert={contactAlert}
               />
             }
           />
           <Route
             path="/search/:id"
-            element={<AnimeInfo animeList={animeList} />}
+            element={<AnimeInfo animeList={animeList} contactAlert={contactAlert} />}
           />
         </Routes>
       </div>

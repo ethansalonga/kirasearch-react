@@ -6,16 +6,12 @@ import Logo from "../assets/logo.png";
 
 const Search = (props) => {
   const renderAnime = () => {
-    props.fetchAnime(props.search)
+    props.fetchAnime(props.search);
   };
 
   useEffect(() => {
     renderAnime();
   }, []);
-
-  const contactAlert = () => {
-    alert("Haven't implemented this yet!");
-  }
 
   const SortAnime = (sort) => {
     if (sort === "POPULARITY") {
@@ -40,7 +36,7 @@ const Search = (props) => {
       <div className="nav__wrapper">
         <nav>
           <div className="navbar">
-            <figure> 
+            <figure>
               <img src={Logo} alt="" className="logo search__logo" />
             </figure>
             <ul className="nav__link--list">
@@ -56,6 +52,7 @@ const Search = (props) => {
                 <Link
                   to="/search"
                   className="nav__link--anchor-search link__hover-effect link__hover-effect--white"
+                  onClick={() => props.props.setSearch("")}
                 >
                   Search anime
                 </Link>
@@ -63,7 +60,8 @@ const Search = (props) => {
               <li className="nav__link">
                 <Link
                   to="/search"
-                  className="nav__link--anchor-search nav__link--anchor-primary" onClick={contactAlert}
+                  className="nav__link--anchor-search nav__link--anchor-primary"
+                  onClick={props.contactAlert}
                 >
                   Contact
                 </Link>
@@ -71,20 +69,24 @@ const Search = (props) => {
             </ul>
           </div>
         </nav>
+
         <h1 className="search__header">Start browsing anime</h1>
         <div className="input__wrapper--search">
-          <form id="search__form" onSubmit={props.handleSearch}>
+          <div>
             <input
               type="search"
               placeholder="Search by Title"
               className="search__input"
               value={props.search}
               onChange={(e) => props.setSearch(e.target.value)}
+              onKeyPress={(event) =>
+                event.key === "Enter" && props.handleSearch()
+              }
             />
-            <button className="btn__input" type="submit">
+            <button className="btn__input" onClick={() => props.handleSearch()}>
               <FontAwesomeIcon icon="search" />
             </button>
-          </form>
+          </div>
         </div>
         <div className="overlay"></div>
       </div>
@@ -94,7 +96,14 @@ const Search = (props) => {
           <nav className="sidebar__nav">
             <h3 className="sidebar__title">Most Popular Anime</h3>
             {props.topAnime.map((anime) => (
-              <Link to={`/search/${anime.mal_id}`} className="sidebar__link" key={anime.mal_id} onClick={() => localStorage.setItem("storedAnime", JSON.stringify(anime))}>
+              <Link
+                to={`/search/${anime.mal_id}`}
+                className="sidebar__link"
+                key={anime.mal_id}
+                onClick={() =>
+                  localStorage.setItem("storedAnime", JSON.stringify(anime))
+                }
+              >
                 {anime.title}
               </Link>
             ))}
