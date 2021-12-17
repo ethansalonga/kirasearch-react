@@ -66,7 +66,47 @@ const Search = (props) => {
                   Contact
                 </Link>
               </li>
+              <button className="btn__menu--search" onClick={props.openMenu}>
+                <FontAwesomeIcon icon="bars" />
+              </button>
             </ul>
+            <div className="menu__backdrop">
+              <button
+                className="btn__menu btn__menu--close"
+                onClick={props.closeMenu}
+              >
+                <FontAwesomeIcon icon="times" />
+              </button>
+              <ul className="menu__links">
+                <li className="menu__list">
+                  <Link
+                    to="/"
+                    className="menu__link"
+                    onClick={props.closeMenu}
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li className="menu__list">
+                  <Link
+                    to="/search"
+                    className="menu__link"
+                    onClick={props.closeMenu}
+                  >
+                    Search
+                  </Link>
+                </li>
+                <li className="menu__list">
+                  <Link
+                    to=""
+                    className="menu__link"
+                    onClick={props.contactAlert}
+                  >
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
         </nav>
 

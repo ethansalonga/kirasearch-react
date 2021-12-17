@@ -47,6 +47,14 @@ function App() {
     alert("Haven't implemented this yet!");
   };
 
+  const openMenu = () => {
+    document.body.classList += " menu--open";
+  };
+
+  function closeMenu() {
+    document.body.classList.remove("menu--open");
+  }
+
   return (
     <Router>
       <div className="App">
@@ -59,6 +67,8 @@ function App() {
                 search={search}
                 setSearch={setSearch}
                 contactAlert={contactAlert}
+                openMenu={openMenu}
+                closeMenu={closeMenu}
               />
             }
           />
@@ -75,12 +85,16 @@ function App() {
                 topAnime={topAnime}
                 setTopAnime={setTopAnime}
                 contactAlert={contactAlert}
+                openMenu={openMenu}
+                closeMenu={closeMenu}
               />
             }
           />
           <Route
             path="/search/:id"
-            element={<AnimeInfo animeList={animeList} contactAlert={contactAlert} />}
+            element={
+              <AnimeInfo animeList={animeList} contactAlert={contactAlert} />
+            }
           />
         </Routes>
       </div>
